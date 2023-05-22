@@ -16,9 +16,25 @@ module.exports = function(app) {
     let returnUnit = convertHandler.getReturnUnit(initUnit);
     let toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
 
+    console.log(initNum, "<= initNum");
+    console.log(initUnit, "<= initUnit");
+
+    if (!initUnit || initUnit === 'invalid unit') {
+      res.send("invalid unit");
+    }
+    
+    // if (!initNum && !initUnit) {
+    //   res.send("invalid unit");
+    // } else if (!initNum || initNum === "invalid unit") {
+    //   res.send("invalid unit");
+    // } else if (!initUnit || initUnit === "invalid unit") {
+    //   res.send("invalid unit");
+    // }
+
 
     let responseObject = {};
     responseObject['initNum'] = initNum
+    responseObject['initUnit'] = initUnit
 
     res.json(responseObject);
   });

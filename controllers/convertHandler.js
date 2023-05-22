@@ -1,23 +1,53 @@
-const inputRegex = /(\d+(?:\.\d+)?|\/|\d+)([a-z]+)/i;
+function handleInput(input) {
+  let numRegex = /(?:\d+(?:\.\d+)?|\.\d+|\/)+/g;
+  // let unitRegex = /[A-Za-z]+/i;
+  let unitRegex = /[A-Za-z]+/i;
+
+  const number = (input.match(numRegex) || ['1'])[0];
+  const unit = (input.match(unitRegex) || [''])[0];
+
+  console.log(number, "<= number")
+  console.log(unit, "<= unit")
+
+  return [number, unit];
+}
+
 
 
 function ConvertHandler() {
 
-
   this.getNum = function(input) {
+    const numStr = handleInput(input)[0];
+
     let result;
-    result = input.match(inputRegex)[1]
+
+    if (numStr.includes('/')) {
+      const [numerator, denominator] = numStr.split('/');
+      result = parseFloat(numerator) / parseFloat(denominator);
+    } else {
+      result = parseFloat(numStr);
+    }
     return result;
   };
 
+
   this.getUnit = function(input) {
     let result;
+    const validUnit = ["l", "gal", "km", "mi", "kg", "lbs"];
+    const unitStr = handleInput(input)[1]?.toLowerCase();
+
+    if (!unitStr || !validUnit.includes(unitStr)) {
+      result = "invalid unit";
+    } else {
+      result = unitStr;
+    }
 
     return result;
   };
 
   this.getReturnUnit = function(initUnit) {
     let result;
+
 
     return result;
   };
@@ -44,5 +74,6 @@ function ConvertHandler() {
   };
 
 }
+
 
 module.exports = ConvertHandler;
