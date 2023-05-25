@@ -30,16 +30,7 @@ module.exports = function(app) {
       res.send("invalid unit");
     }
 
-    
-
-    let responseObject = {};
-    responseObject['initNum'] = initNum
-    responseObject['initUnit'] = initUnit
-    responseObject['returnNum'] = returnNum
-    responseObject['returnUnit'] = returnUnit
-    responseObject['string'] = toString
-
-    res.json(responseObject);
+   res.json({ initNum, initUnit, returnNum, returnUnit, string: toString });
 
   });
 
