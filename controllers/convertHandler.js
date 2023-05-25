@@ -6,10 +6,7 @@ function numberUnitHandler(input) {
 
   const number = (input.match(numRegex) || '1')[0];
   const unit = (input.match(unitRegex) || [''])[0];
-
-  console.log(number, "<= number");
-  console.log(unit, "<= unit");
-
+  
   return [number, unit];
 }
 
@@ -28,9 +25,7 @@ function ConvertHandler() {
     //  const numStr = numberUnitHandler(input)[0];
     let numStr = numberUnitHandler(input)[0]; 
     let fractionSplit = fractionHandler(numStr);
-    console.log(numStr, "<= numStr");
-    console.log(fractionSplit, "<= fractionSplit");
-
+    
     let result;
     
     if (!fractionSplit) {
@@ -39,9 +34,7 @@ function ConvertHandler() {
 
     let numerator = fractionSplit[0];
     let denominator = fractionSplit[1];
-    console.log(numerator,"<= numerator");
-    console.log(denominator,"<= denominator");
-
+    
     if ( !isNaN(numerator) && !denominator ) {
       result = numerator;
     } else if (!isNaN(numerator) && !isNaN(denominator)) {
@@ -50,7 +43,7 @@ function ConvertHandler() {
     }
 
     return parseFloat(result);
-    console.log(result, "<= initNum")
+    
   };
 
   this.getUnit = function(input) {
@@ -62,7 +55,6 @@ function ConvertHandler() {
       result = "invalid unit";
     } else if (unitStr === 'l') {
       result = 'L'
-      console.log("L it is")
     } else {
       result = unitStr;
     }
